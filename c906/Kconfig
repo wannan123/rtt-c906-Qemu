@@ -1,0 +1,68 @@
+mainmenu "RT-Thread Project Configuration"
+
+BSP_DIR := .
+
+RTT_DIR := ../..
+
+PKGS_DIR := packages
+
+source "$(RTT_DIR)/Kconfig"
+osource "$PKGS_DIR/Kconfig"
+rsource "board/Kconfig"
+
+config BSP_USING_C906_LITTLE
+    bool 
+    select ARCH_RISCV64
+    select RT_USING_COMPONENTS_INIT
+    select RT_USING_USER_MAIN
+    select RT_USING_CACHE
+
+    default y
+
+config PLIC_PHY_ADDR
+    hex
+    default 0x70000000
+
+config IRQ_MAX_NR
+    int 
+    default 61
+
+config TIMER_CLK_FREQ
+    int
+    default 25000000
+
+config GPIO_IRQ_BASE
+    int
+    default 41
+
+config SYS_GPIO_IRQ_BASE
+    int
+    default 47
+
+config SOC_TYPE_CV180X
+    bool
+    default n
+
+config SOC_TYPE_SG2002
+    bool
+    default n
+config BOARD_UART
+    bool "Enable UART"
+    default y
+    help
+      Enable UART support for the board.
+
+config BOARD_UART_BAUDRATE
+    int "UART Baudrate"
+    default 115200
+    depends on BOARD_UART
+    help
+      Set the baudrate for the UART.
+
+config BOARD_UART_PORT
+    int "UART Port"
+    default 0
+    depends on BOARD_UART
+    help
+      Set the UART port number.
+

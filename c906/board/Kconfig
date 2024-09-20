@@ -1,0 +1,36 @@
+menu "Board Configuration"
+
+config BOARD_UART
+    bool "Enable UART"
+    default y
+    help
+      Enable UART support for the board.
+
+config BOARD_UART_BAUDRATE
+    int "UART Baudrate"
+    default 115200
+    depends on BOARD_UART
+    help
+      Set the baudrate for the UART.
+
+config BOARD_UART_PORT
+    int "UART Port"
+    default 0
+    depends on BOARD_UART
+    help
+      Set the UART port number.
+      
+config C906_PLIC_PHY_ADDR
+    hex
+    default 0xe0000000
+
+config IRQ_MAX_NR
+    int "IRQ_MAX_NR"
+    default 64
+
+config TIMER_CLK_FREQ
+    int
+    default 1000000
+
+endmenu
+
